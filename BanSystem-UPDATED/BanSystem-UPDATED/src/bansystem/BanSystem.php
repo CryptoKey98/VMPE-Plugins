@@ -45,7 +45,7 @@ class BanSystem extends PluginBase {
     }
     
     private function initializeCommands() {
-        $commands = array("deathban");
+        $commands = array("ban", "banlist", "pardon", "pardon-ip", "ban-ip", "kick");
         for ($i = 0; $i < count($commands); $i++) {
             $this->removeCommand($commands[$i]);
         }
@@ -140,7 +140,7 @@ class BanSystem extends PluginBase {
             new Permission("bansystem.command.unban", "Allows the player to allow the given player to use this server.", Permission::DEFAULT_OP),
             new Permission("bansystem.command.unbanip", "Allows the player to allow the given IP address to use this server.", Permission::DEFAULT_OP),
             new Permission("bansystem.command.unmute", "Allows the player to allow the given player to send public chat message.", Permission::DEFAULT_OP),
-            new Permission("bansystem.command.unmuteip", "Allows the player to allow the given IP address to send public chat message.", Permission::DEFAUT_OP),
+            new Permission("bansystem.command.unmuteip", "Allows the player to allow the given IP address to send public chat message.", Permission::DEFAULT_OP),
             new Permission("deathban.command", "Allows the player to temporarily prevent the given player to use this server.")
           
         ));
