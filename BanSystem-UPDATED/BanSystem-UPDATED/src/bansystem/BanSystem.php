@@ -1,7 +1,5 @@
 <?php
-
 namespace bansystem;
-
 use bansystem\command\BanCommand;
 use bansystem\command\BanIPCommand;
 use bansystem\command\BanListCommand;
@@ -34,7 +32,6 @@ use pocketmine\permission\Permission;
 use pocketmine\plugin\Plugin;
 use pocketmine\plugin\PluginBase;
 use bansystem\command\DeathBanCommand;
-
 class BanSystem extends PluginBase {
     
     private function removeCommand(string $command) {
@@ -143,8 +140,8 @@ class BanSystem extends PluginBase {
             new Permission("bansystem.command.unban", "Allows the player to allow the given player to use this server.", Permission::DEFAULT_OP),
             new Permission("bansystem.command.unbanip", "Allows the player to allow the given IP address to use this server.", Permission::DEFAULT_OP),
             new Permission("bansystem.command.unmute", "Allows the player to allow the given player to send public chat message.", Permission::DEFAULT_OP),
-            new Permission("bansystem.command.unmuteip", "Allows the player to allow the given IP address to send public chat message.")
-            new Permission("deathban.command", "Allows the player to temporarily prevent the given player to use this server.", Permission::DEFAULT_OP),
+            new Permission("bansystem.command.unmuteip", "Allows the player to allow the given IP address to send public chat message.", Permission::DEFAUT_OP),
+            new Permission("deathban.command", "Allows the player to temporarily prevent the given player to use this server.")
           
         ));
     }
