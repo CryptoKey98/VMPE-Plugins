@@ -3,8 +3,6 @@
 namespace bansystem;
 
 use bansystem\command\DeathBanCommand;
-use bansystem\command\PardonCommand;
-use bansystem\command\BanListCommand;
 use pocketmine\event\Listener;
 use pocketmine\permission\Permission;
 use bansystem\listener\PlayerChatListener;
@@ -25,15 +23,13 @@ class BanSystem extends PluginBase {
     }
     
     private function initializeCommands() {
-        $commands = array("deathban", "pardon", "banlist");
+        $commands = array("deathban");
         for ($i = 0; $i < count($commands); $i++) {
             $this->removeCommand($commands[$i]);
         }
         $commandMap = $this->getServer()->getCommandMap();
         $commandMap->registerAll("bansystem", array(
-            new DeathBanCommand(),
-            new PardonCommand(),
-            new BanListCommand()
+            new DeathBanCommand()
         ));
     }
     
@@ -81,7 +77,7 @@ class BanSystem extends PluginBase {
     
     private function initializePermissions() {
         $this->addPermissions(array(
-            new Permission("", "Allows the player to temporarily prevent the given player to use this server.", Permission::DEFAULT_OP),
+            new Permission("deathban.command", "Allows the player to temporarily prevent the given player to use this server.", Permission::DEFAULT_OP),
           
         ));
     }
@@ -96,11 +92,11 @@ class BanSystem extends PluginBase {
     }
     
     public function onLoad() {
-        $this->getLogger()->info("VMPE-Action is now loading... Please wait for completion.");
+        $this->getLogger()->info("DeathBan Plugin is now loading... Please wait for completion.");
     }
     
     public function onEnable() {
-        $this->getLogger()->info("VMPE-Action is now enabled. As far as we know, there's no errors on-enable.");
+        $this->getLogger()->info("DeathBan plugin is now enabled. As far as we know, there's no errors on-enable.");
         $this->initializeCommands();
         $this->initializeListeners();
         $this->initializePermissions();
@@ -109,6 +105,6 @@ class BanSystem extends PluginBase {
     }
     
     public function onDisable() {
-        $this->getLogger()->info("VMPE-Action is now disabled. Did the server stop?");
+        $this->getLogger()->info("DeathBan plugin is now disabled. Did the server stop?");
     }
 }
