@@ -27,6 +27,7 @@ use bansystem\command\UnmuteIPCommand;
 use bansystem\listener\PlayerChatListener;
 use bansystem\listener\PlayerCommandPreproccessListener;
 use bansystem\listener\PlayerPreLoginListener;
+use bansystem\listener\MuteEvent;
 use pocketmine\event\Listener;
 use pocketmine\permission\Permission;
 use pocketmine\plugin\Plugin;
@@ -157,11 +158,11 @@ class BanSystem extends PluginBase {
     }
     
     public function onLoad() {
-        $this->getLogger()->info("DeathBan Plugin is now loading... Please wait for completion.");
+        $this->getLogger()->info("VMPE Actions Plugin is now loading... Please wait for completion.");
     }
     
     public function onEnable() {
-        $this->getLogger()->info("DeathBan plugin is now enabled. As far as we know, there's no errors on-enable.");
+        $this->getLogger()->info("VMPE Actions plugin is now enabled. As far as we know, there's no errors on-enable.");
         $this->initializeCommands();
         $this->initializeListeners();
         $this->initializePermissions();
