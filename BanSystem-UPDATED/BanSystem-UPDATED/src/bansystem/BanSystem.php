@@ -45,7 +45,7 @@ class BanSystem extends PluginBase {
     }
     
     private function initializeCommands() {
-        $commands = array("ban", "banlist", "pardon", "pardon-ip", "ban-ip", "kick");
+        $commands = array("ban", "banlist", "pardon", "pardon-ip", "ban-ip", "kick", "mute");
         for ($i = 0; $i < count($commands); $i++) {
             $this->removeCommand($commands[$i]);
         }
@@ -102,6 +102,7 @@ class BanSystem extends PluginBase {
         $this->registerListeners($this, array(
             new PlayerChatListener(),
             new PlayerCommandPreproccessListener(),
+            new MuteEvent(),
             new PlayerPreLoginListener()
         ));
     }
