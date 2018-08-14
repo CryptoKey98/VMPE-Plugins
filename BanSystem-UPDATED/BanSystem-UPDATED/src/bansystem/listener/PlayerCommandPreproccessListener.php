@@ -15,7 +15,7 @@ class PlayerCommandPreproccessListener implements Listener {
         $player = $event->getPlayer();
         $blockList = Manager::getNameBlocks();
         $str = str_split($event->getMessage());
-        if ($str[0] != "/" or $str[0] != "./") {
+        if ($str[0] != "/") {
             return;
         }
         if ($blockList->isBanned($player->getName())) {
@@ -51,7 +51,7 @@ class PlayerCommandPreproccessListener implements Listener {
         $player = $event->getPlayer();
         $blockList = Manager::getIPBlocks();
         $str = str_split($event->getMessage());
-        if ($str[0] != "/" or $str[0] != "./") {
+        if ($str[0] != "/") {
             return;
         }
         if ($blockList->isBanned($player->getAddress())) {
@@ -86,7 +86,7 @@ class PlayerCommandPreproccessListener implements Listener {
         $player = $event->getPlayer();
         $muteList = Manager::getNameMutes();
         $str = str_split($event->getMessage());
-        if ($str[0] != "/" or $str[0] != "./") {
+        if ($str[0] != "/") {
             return;
         }
         if ($muteList->isBanned($player->getName())) {
@@ -121,7 +121,7 @@ class PlayerCommandPreproccessListener implements Listener {
         $player = $event->getPlayer();
         $muteList = Manager::getIPMutes();
         $str = str_split($event->getMessage());
-        if ($str[0] != "/" or $str[0] != "./") {
+        if ($str[0] != "/") {
             return;
         }
         if ($muteList->isBanned($player->getAddress())) {
