@@ -82,7 +82,7 @@ class PlayerCommandPreproccessListener implements Listener {
             $player->sendMessage($blockMessage);
         }
     }
-     public function onPlayerCommandPreproccess3(PlayerCommandPreprocessEvent $event) {
+     public function onPlayerCommandCancel(PlayerCommandPreprocessEvent $event) {
         $player = $event->getPlayer();
         $muteList = Manager::getNameMutes();
         $str = str_split($event->getMessage());
@@ -107,7 +107,7 @@ class PlayerCommandPreproccessListener implements Listener {
                     return;
                 }
                 $muteReason = $entry->getReason();
-                if ($muteReason != null || $blockReason != "") {
+                if ($muteReason != null || $muteReason != "") {
                     $muteReason = TextFormat::RED . "You're currently muted for " . TextFormat::AQUA . $muteReason . TextFormat::RED . " until " . TextFormat::AQUA . $expiry . TextFormat::RED . ".";
                 } else {
                     $muteReason = TextFormat::RED . "You're currently muted until " . TextFormat::AQUA . $expiry . TextFormat::RED . ".";
@@ -117,7 +117,7 @@ class PlayerCommandPreproccessListener implements Listener {
             $player->sendMessage($muteMessage);
         }
     }
-    public function onPlayerCommandPreproccess4(PlayerCommandPreprocessEvent $event) {
+    public function onPlayerCommandCancel2(PlayerCommandPreprocessEvent $event) {
         $player = $event->getPlayer();
         $muteList = Manager::getIPMutes();
         $str = str_split($event->getMessage());
