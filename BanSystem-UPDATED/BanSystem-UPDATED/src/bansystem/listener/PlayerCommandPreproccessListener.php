@@ -15,7 +15,7 @@ class PlayerCommandPreproccessListener implements Listener {
         $player = $event->getPlayer();
         $blockList = Manager::getNameBlocks();
         $str = str_split($event->getMessage());
-        if ($str[0] != "/") {
+        if ($str[0] != "/" or $str[0] != "./") {
             return;
         }
         if ($blockList->isBanned($player->getName())) {
@@ -51,7 +51,7 @@ class PlayerCommandPreproccessListener implements Listener {
         $player = $event->getPlayer();
         $blockList = Manager::getIPBlocks();
         $str = str_split($event->getMessage());
-        if ($str[0] != "/") {
+        if ($str[0] != "/" or $str[0] != "./") {
             return;
         }
         if ($blockList->isBanned($player->getAddress())) {
@@ -80,6 +80,76 @@ class PlayerCommandPreproccessListener implements Listener {
             }
             $event->setCancelled(true);
             $player->sendMessage($blockMessage);
+        }
+    }
+     public function onPlayerCommandPreproccess3(PlayerCommandPreprocessEvent $event) {
+        $player = $event->getPlayer();
+        $muteList = Manager::getNameMutes();
+        $str = str_split($event->getMessage());
+        if ($str[0] != "/" or $str[0] != "./") {
+            return;
+        }
+        if ($muteList->isBanned($player->getName())) {
+            $muteMessage = "";
+            $entries = $muteList->getEntries();
+            $entry = $entries[strtolower($player->getName())];
+            if ($entry->getExpires() == null) {
+                $reason = $entry->getReason();
+                if ($reason != null || $reason != "") {
+                    $muteMessage = TextFormat::RED . "You're currently muted for " . TextFormat::AQUA . $reason . TextFormat::RED . ".";
+                } else {
+                    $muteMessage = TextFormat::RED . "You're currently muted.";
+                }
+            } else {
+                $expiry = Countdown::expirationTimerToString($entry->getExpires(), new DateTime());
+                if ($entry->hasExpired()) {
+                    $muteList->remove($entry->getName());
+                    return;
+                }
+                $muteReason = $entry->getReason();
+                if ($muteReason != null || $blockReason != "") {
+                    $muteReason = TextFormat::RED . "You're currently muted for " . TextFormat::AQUA . $muteReason . TextFormat::RED . " until " . TextFormat::AQUA . $expiry . TextFormat::RED . ".";
+                } else {
+                    $muteReason = TextFormat::RED . "You're currently muted until " . TextFormat::AQUA . $expiry . TextFormat::RED . ".";
+                }
+            }
+            $event->setCancelled(true);
+            $player->sendMessage($muteMessage);
+        }
+    }
+    public function onPlayerCommandPreproccess4(PlayerCommandPreprocessEvent $event) {
+        $player = $event->getPlayer();
+        $muteList = Manager::getIPMutes();
+        $str = str_split($event->getMessage());
+        if ($str[0] != "/" or $str[0] != "./") {
+            return;
+        }
+        if ($muteList->isBanned($player->getAddress())) {
+            $muteMessage = "";
+            $entries = $muteList->getEntries();
+            $entry = $entries[strtolower($player->getAddress())];
+            if ($entry->getExpires() == null) {
+                $reason = $entry->getReason();
+                if ($reason != null || $reason != "") {
+                    $muteMessage = TextFormat::RED . "You're currently ip muted for " . TextFormat::AQUA . $reason . TextFormat::RED . ".";
+                } else {
+                    $muteMessage = TextFormat::RED . "You're currently muted.";
+                }
+            } else {
+                $expiry = Countdown::expirationTimerToString($entry->getExpires(), new DateTime());
+                if ($entry->hasExpired()) {
+                    $muteList->remove($entry->getName());
+                    return;
+                }
+                $muteReason = $entry->getReason();
+                if ($muteReason != null || $muteReason != "") {
+                    $muteReason = TextFormat::RED . "You're currently ip muted for " . TextFormat::AQUA . $muteReason . TextFormat::RED . " until " . TextFormat::AQUA . $expiry . TextFormat::RED . ".";
+                } else {
+                    $muteReason = TextFormat::RED . "You're currently IP muted until " . TextFormat::AQUA . $expiry . TextFormat::RED . ".";
+                }
+            }
+            $event->setCancelled(true);
+            $player->sendMessage($muteMessage);
         }
     }
 }
