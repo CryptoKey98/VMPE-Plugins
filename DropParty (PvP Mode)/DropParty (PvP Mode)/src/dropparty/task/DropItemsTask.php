@@ -2,16 +2,15 @@
 
 namespace dropparty\task;
 
-use pocketmine\scheduler\PluginTask;
+use pocketmine\scheduler\Task;
 use pocketmine\item\Item;
 use pocketmine\utils\Config;
 use pocketmine\math\Vector3;
 use dropparty\DropParty;
 
-class DropItemsTask extends PluginTask {
+class DropItemsTask extends Task {
 	
-	public function __construct(DropParty $plugin) {
-		parent::__construct($plugin);
+	public function __construct(DropParty $plugin){
 		$this->plugin = $plugin;	
 	}
 	
@@ -19,7 +18,7 @@ class DropItemsTask extends PluginTask {
 		return $this->plugin;
 	}
 	
-	public function onRun(int $currentTick) {
+	public function onRun(int $currentTick): void {
 		
 		if($this->getPlugin()->status == "enabled") {
 		  $level = $this->getPlugin()->getServer()->getLevelByName($this->getPlugin()->cfg["World"]);
