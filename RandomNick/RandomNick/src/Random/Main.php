@@ -14,13 +14,13 @@ class Main extends PluginBase {
   
   public $nicks = ["LALA", "HUHU", "HAHA", "BubugagaLp", "Binika", "Susages", "Bread", "Apple", "Lips", "BoyGotLove", "Kane", "School", "Lunch", "Dinner", "Breakfast", "Kiss", "Heart", "Newbie", "GirlGotLove", "Sing", "Horns"];
   
-  public function onEnable(){
+  public function onEnable(): void {
     $this->getLogger()->info(C::GREEN."Activated!");
   }
-  public function onDisable(){
+  public function onDisable(): void {
     $this->getLogger()->info(C::RED."Deactivated!");
   }
-  public function action_nick_on($player){
+  public function action_nick_on(Player $player){
 		if(count($this->nicks) === 1){
 			$player->setDisplayName($this->nicks[0]);
 			$player->setNameTag($this->nicks[0]);
@@ -45,7 +45,7 @@ class Main extends PluginBase {
 			return true;
 		}
 	}
-	public function action_nick_off($player){
+	public function action_nick_off(Player $player){
 		array_push($this->nicks, $player->getDisplayName());
 		$player->setDisplayName($player->getName());
 		$player->setNameTag($player->getName());
