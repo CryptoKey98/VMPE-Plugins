@@ -3,6 +3,7 @@
 namespace bansystem\listener;
 
 use bansystem\Manager;
+use bansystem\BanSystem;
 use bansystem\util\date\Countdown;
 use DateTime;
 use pocketmine\event\Listener;
@@ -11,11 +12,14 @@ use pocketmine\utils\TextFormat;
 
 class MuteEvent implements Listener {
 
+        public function __construct(BanSystem $plugin) {
+        $this->plugin = $plugin;
+    }
 public function onPlayerCommandCancel(PlayerCommandPreprocessEvent $event) {
         $player = $event->getPlayer();
         $muteList = Manager::getNameMutes();
        $command = $event->getMessage();
-$comds = $this->getConfig()->get("cmd");
+$comds = $this->plugin->getConfig()->get("cmd");
 $com = explode(" ", $command);
 foreach($comds as $cmd){
 if($com[0] == "/" . $cmd or $com[0] == "./" . $cmd){
