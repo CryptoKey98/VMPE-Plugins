@@ -173,6 +173,7 @@ class BanSystem extends PluginBase {
         $this->initializePermissions();
         $this->initializeFiles();
         $this->removeBanExpired();
+        self::$instance = $this;
     }
     
     public function onDisable() {
