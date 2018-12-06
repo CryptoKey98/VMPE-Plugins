@@ -34,6 +34,8 @@ use pocketmine\plugin\Plugin;
 use pocketmine\plugin\PluginBase;
 use bansystem\command\DeathBanCommand;
 class BanSystem extends PluginBase {
+     /** @var OneVsOne */
+    private static $instance;
     
     private function removeCommand(string $command) {
         $commandMap = $this->getServer()->getCommandMap();
@@ -160,7 +162,9 @@ class BanSystem extends PluginBase {
     public function onLoad() {
         $this->getLogger()->info("VMPE Actions Plugin is now loading... Please wait for completion.");
     }
-    
+    public static function getInstance(): self{
+        return self::$instance;
+    }
     public function onEnable() {
         $this->getLogger()->info("VMPE Actions plugin is now enabled. As far as we know, there's no errors on-enable.");
         $this->saveDefaultConfig();
