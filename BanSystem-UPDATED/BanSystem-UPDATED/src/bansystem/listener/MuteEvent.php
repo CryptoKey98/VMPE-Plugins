@@ -14,8 +14,11 @@ class MuteEvent implements Listener {
 public function onPlayerCommandCancel(PlayerCommandPreprocessEvent $event) {
         $player = $event->getPlayer();
         $muteList = Manager::getNameMutes();
-        $str = str_split($event->getMessage());
-         if ($str[0] != "/msg" || $str[0] != "/tell" || $str[0] != "/me" || $str[0] != "/reply" || $str[0] != "/r") {
+       $command = $event->getMessage();
+$comds = $this->getConfig()->get("cmd");
+$com = explode(" ", $command);
+foreach($comds as $cmd){
+if($com[0] == "/" . $cmd or $com[0] == "./" . $cmd){
             return;
         }
         if ($muteList->isBanned($player->getName())) {
@@ -49,8 +52,11 @@ public function onPlayerCommandCancel(PlayerCommandPreprocessEvent $event) {
     public function onPlayerCommandCancel2(PlayerCommandPreprocessEvent $event) {
         $player = $event->getPlayer();
         $muteList = Manager::getIPMutes();
-        $str = str_split($event->getMessage());
-         if ($str[0] != "/msg" || $str[0] != "/tell" || $str[0] != "/me" || $str[0] != "/reply" || $str[0] != "/r") {
+       $command = $event->getMessage();
+$comds = $this->getConfig()->get("cmd");
+$com = explode(" ", $command);
+foreach($comds as $cmd){
+if($com[0] == "/" . $cmd or $com[0] == "./" . $cmd){
             return;
         }
         if ($muteList->isBanned($player->getAddress())) {
