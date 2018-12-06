@@ -11,7 +11,8 @@ use pocketmine\event\player\PlayerCommandPreprocessEvent;
 use pocketmine\utils\TextFormat;
 
 class MuteEvent implements Listener {
-
+public $plugin;
+        
         public function __construct(BanSystem $plugin) {
         $this->plugin = $plugin;
     }
