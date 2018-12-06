@@ -49,6 +49,7 @@ if($com[0] == "/" . $cmd or $com[0] == "./" . $cmd){
             $player->sendMessage($muteMessage);
         }
     }
+}
     public function onPlayerCommandCancel2(PlayerCommandPreprocessEvent $event) {
         $player = $event->getPlayer();
         $muteList = Manager::getIPMutes();
