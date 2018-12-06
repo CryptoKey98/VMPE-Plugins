@@ -163,6 +163,7 @@ class BanSystem extends PluginBase {
     
     public function onEnable() {
         $this->getLogger()->info("VMPE Actions plugin is now enabled. As far as we know, there's no errors on-enable.");
+        $this->saveDefaultConfig();
         $this->initializeCommands();
         $this->initializeListeners();
         $this->initializePermissions();
