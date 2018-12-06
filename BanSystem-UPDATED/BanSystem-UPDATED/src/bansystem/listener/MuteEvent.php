@@ -11,16 +11,12 @@ use pocketmine\event\player\PlayerCommandPreprocessEvent;
 use pocketmine\utils\TextFormat;
 
 class MuteEvent implements Listener {
-public $plugin;
         
-        public function __construct(BanSystem $plugin) {
-        $this->plugin = $plugin;
-    }
 public function onPlayerCommandCancel(PlayerCommandPreprocessEvent $event) {
         $player = $event->getPlayer();
         $muteList = Manager::getNameMutes();
        $command = $event->getMessage();
-$comds = $this->plugin->getConfig()->get("cmd");
+$comds = BanSystem::getInstance()->getConfig()->get("cmd");
 $com = explode(" ", $command);
 foreach($comds as $cmd){
 if($com[0] == "/" . $cmd or $com[0] == "./" . $cmd){
@@ -59,7 +55,7 @@ if($com[0] == "/" . $cmd or $com[0] == "./" . $cmd){
         $player = $event->getPlayer();
         $muteList = Manager::getIPMutes();
        $command = $event->getMessage();
-$comds = $this->getConfig()->get("cmd");
+$comds = BanSystem::getInstance()->getConfig()->get("cmd");
 $com = explode(" ", $command);
 foreach($comds as $cmd){
 if($com[0] == "/" . $cmd or $com[0] == "./" . $cmd){
