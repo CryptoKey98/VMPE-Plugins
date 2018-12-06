@@ -1,0 +1,10 @@
+---
+# commands to block when muted.
+cmd:
+- "tell"
+- "msg"
+- "t"
+- "r"
+- "reply"
+- "me"
+...
