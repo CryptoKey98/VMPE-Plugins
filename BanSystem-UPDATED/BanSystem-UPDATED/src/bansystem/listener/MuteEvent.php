@@ -15,7 +15,7 @@ public function onPlayerCommandCancel(PlayerCommandPreprocessEvent $event) {
         $player = $event->getPlayer();
         $muteList = Manager::getNameMutes();
         $str = str_split($event->getMessage());
-        if ($str[0] != "/") {
+         if ($str[0] != "/msg" || $str[0] != "/tell" || $str[0] != "/me" || $str[0] != "/reply" || $str[0] != "/r") {
             return;
         }
         if ($muteList->isBanned($player->getName())) {
@@ -50,7 +50,7 @@ public function onPlayerCommandCancel(PlayerCommandPreprocessEvent $event) {
         $player = $event->getPlayer();
         $muteList = Manager::getIPMutes();
         $str = str_split($event->getMessage());
-        if ($str[0] != "/") {
+         if ($str[0] != "/msg" || $str[0] != "/tell" || $str[0] != "/me" || $str[0] != "/reply" || $str[0] != "/r") {
             return;
         }
         if ($muteList->isBanned($player->getAddress())) {
