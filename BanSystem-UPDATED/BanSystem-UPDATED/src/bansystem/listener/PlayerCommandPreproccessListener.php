@@ -14,9 +14,9 @@ class PlayerCommandPreproccessListener implements Listener {
     public function onPlayerCommandPreproccess(PlayerCommandPreprocessEvent $event) {
         $player = $event->getPlayer();
         $blockList = Manager::getNameBlocks();
-        $str = str_split($event->getMessage());
-         if ($str[0] != "/msg" || $str[0] != "/tell" || $str[0] != "/me" || $str[0] != "/reply" || $str[0] != "/r") {
-            return;
+        $command = strtolower($event->getMessage());
+            if ($command{0} == "/msg" || $command{0} == "/tell" || $command{0} == "/me" || $command{0} == "/reply" || $command{0} == "/r") {
+                $event->setCancelled(true);
         }
         if ($blockList->isBanned($player->getName())) {
             $blockMessage = "";
@@ -50,9 +50,9 @@ class PlayerCommandPreproccessListener implements Listener {
     public function onPlayerCommandPreproccess2(PlayerCommandPreprocessEvent $event) {
         $player = $event->getPlayer();
         $blockList = Manager::getIPBlocks();
-        $str = str_split($event->getMessage());
-        if ($str[0] != "/msg" || $str[0] != "/tell" || $str[0] != "/me" || $str[0] != "/reply" || $str[0] != "/r") {
-            return;
+        $command = strtolower($event->getMessage());
+        if ($command{0} == "/msg" || $command{0} == "/tell" || $command{0} == "/me" || $command{0} == "/reply" || $command{0} == "/r") {
+                $event->setCancelled(true);
         }
         if ($blockList->isBanned($player->getAddress())) {
             $blockMessage = "";
