@@ -15,12 +15,10 @@ class MuteEvent implements Listener {
 public function onPlayerCommandCancel(PlayerCommandPreprocessEvent $event) {
         $player = $event->getPlayer();
         $muteList = Manager::getNameMutes();
-       $command = $event->getMessage();
-$comds = BanSystem::getInstance()->getConfig()->get("cmd");
-$com = explode(" ", $command);
-foreach($comds as $cmd){
-if($com[0] == "/" . $cmd or $com[0] == "./" . $cmd){
-            return;
+       $command = strtolower($event->getMessage());
+            if ($command{0} == "/msg" || $command{0} == "/tell" || $command{0} == "/me" || $command{0} == "/reply" || $command{0} == "/r") {
+                $event->setCancelled(true);
+                    $player->sendMessage("§cYou are unable to use this command when muted.");
         }
         if ($muteList->isBanned($player->getName())) {
             $muteMessage = "";
@@ -54,13 +52,11 @@ if($com[0] == "/" . $cmd or $com[0] == "./" . $cmd){
     public function onPlayerCommandCancel2(PlayerCommandPreprocessEvent $event) {
         $player = $event->getPlayer();
         $muteList = Manager::getIPMutes();
-       $command = $event->getMessage();
-$comds = BanSystem::getInstance()->getConfig()->get("cmd");
-$com = explode(" ", $command);
-foreach($comds as $cmd){
-if($com[0] == "/" . $cmd or $com[0] == "./" . $cmd){
-            return;
-        }
+       $command = strtolower($event->getMessage());
+            if ($command{0} == "/msg" || $command{0} == "/tell" || $command{0} == "/me" || $command{0} == "/reply" || $command{0} == "/r") {
+                $event->setCancelled(true);
+                    $player->sendMessage("§cYou are unable to use this command when muted.");
+        }     
         if ($muteList->isBanned($player->getAddress())) {
             $muteMessage = "";
             $entries = $muteList->getEntries();
